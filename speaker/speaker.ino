@@ -1,3 +1,8 @@
+// uses ultrasonic sensor and speaker to replicate a piano 
+// general notes:
+//  echo pin: sends signal when reflected wave is recieved 
+//  trig pin: sends signal representing distance when sensor is triggered
+
 #include <PCM.h>
 
 // stores frequency values for different notes
@@ -13,15 +18,15 @@
 
 int notes[] = {noteA, noteB, noteC, noteD, noteE, noteF, noteG}; // array of note frequencies
 
+// initializes digital pin modes
 void setup() {
   Serial.begin (9600);
-  // trigger pin sends signal based on distance 
   pinMode(trigPin, OUTPUT);
-  // echo pin sends signal when reflected wave is recieved
   pinMode(echoPin, INPUT);
 
 } 
 
+// continuously scans for sensor input and plays or doesn't play notes accordingly
 void loop() {
   long duration, distance; // initializes duration and distance variable 
   digitalWrite(trigPin, LOW); // sets trigPin to LOW
@@ -32,11 +37,8 @@ void loop() {
   duration = pulseIn(echoPin, HIGH); // sets duration as time for sound to travel back and forth
   distance = (spd*duration)/2; // sets distance as the one-way distance for the sound, spd is in cm/s, duration in s
   noTone(speaker); // turns off speaker if not already off 
-
-  
   if (distance >= offset && distance <= interval * sizeof(notes) + offset) { // checks that the detection is within range
     tone(speaker, notes[(distance - offset)/interval] ); // plays frequency whose value is based on the distance from the sensor
   } 
-  
   delay(1000); 
 }
