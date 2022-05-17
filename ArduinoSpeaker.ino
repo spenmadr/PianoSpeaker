@@ -13,8 +13,8 @@
 #define echoPin 12
 #define speaker 11 
 #define spd 0.0343 //speed of sound in cm/s
-#define offset 4 // offsets the position 0 for the sensor
-#define interval 10 // length of each key
+#define offset 2 // offsets the position 0 for the sensor
+#define interval 4 // length of each key
 
 int notes[] = {noteA, noteB, noteC, noteD, noteE, noteF, noteG}; // array of note frequencies
 
