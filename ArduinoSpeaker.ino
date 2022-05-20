@@ -3,6 +3,8 @@
 //  echo pin: sends signal when reflected wave is recieved 
 //  trig pin: sends signal representing distance when sensor is triggered
 
+#include "AKey"
+
 #include <PCM.h>
 
 // stores frequency values for different notes
@@ -39,6 +41,7 @@ void loop() {
   noTone(speaker); // turns off speaker if not already off 
   if (distance >= offset && distance <= interval * sizeof(notes) + offset) { // checks that the detection is within range
     tone(speaker, notes[(distance - offset)/interval] ); // plays frequency whose value is based on the distance from the sensor
+    //startPlayback(aSample, sizeof(aSample));
   } 
   delay(1000); 
 }
