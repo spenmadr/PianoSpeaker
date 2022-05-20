@@ -1,9 +1,11 @@
 #include <PCM.h>
 
+// array of samples 
 const unsigned char aSample[] PROGMEM = {};
 void setup()
 {
-  startPlayback(aSample, sizeof(sample));
+  // plays sample
+  startPlayback(aSample, sizeof(aSample));
 }
 
 void loop()
